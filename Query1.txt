@@ -1,0 +1,27 @@
+BEGIN TRANSACTION;
+
+BEGIN TRY
+    -- Deduct from EmpID = 11
+    UPDATE Employees 
+    SET Salary = Salary - 1000 
+    WHERE EmpID = 11;
+
+    IF @@ROWCOUNT = 0
+        THROW 50001, 'EmpID 11 does not exist', 1;
+
+    -- Add to EmpID = 2
+    UPDATE Employees 
+    SET Salary = Salary + 1000 
+    WHERE EmpID = 2;
+
+    IF @@ROWCOUNT = 0
+        THROW 50002, 'EmpID 2 does not exist', 1;
+
+    COMMIT;
+END TRY
+
+BEGIN CATCH
+    ROLLBACK;
+
+    PRINT 'Error: ' + ERROR_MESSAGE();
+END CATCH;
