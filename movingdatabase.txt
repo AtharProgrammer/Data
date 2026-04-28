@@ -1,0 +1,8 @@
+C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA
+
+MOVE 'CompanyDB' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\CompanyDB.ldf'; 
+
+RESTORE DATABASE CompanyDB 
+FROM DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\CompanyDB.bak' 
+WITH REPLACE, 
+MOVE 'CompanyDB' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\CompanyDB.ldf'; 
